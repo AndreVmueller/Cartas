@@ -12,10 +12,18 @@ public class JogadorView {
         this.controller  = controller;
     }
     public void mostraMao(Jogador jog) {
-        System.out.println(jog.toString());
-        Scanner scan = new Scanner(System.in);
-        System.out.println("pressione enter para continuar");
-        scan.next();
+        
+        if(jog != null)
+        {
+            System.out.println(jog.toString());
+            Scanner scan = new Scanner(System.in);
+            System.out.println("pressione enter para continuar");
+            scan.next();
+        }
+        else
+        {
+            System.out.println("Jogador inexistente!!!!\n");
+        }
     }
     public void escolheCartaDescartar(Jogador jog) {
         for (int i  = 0; i < jog.getMao().size(); i++) {
@@ -27,6 +35,11 @@ public class JogadorView {
         do {
             resp = scan.nextInt();
         } while (resp < 1 || resp > jog.getMao().size());
+        
         controller.escolhaDescarteJogador(resp);
+        //recursão
+        escolheCartaDescartar(jog);
     }
+    
+    
 }
